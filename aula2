@@ -30,5 +30,31 @@ public class nome {
 				System.out.println("Nome Digitado:"+nome);
 	}
 	}
+-------------------------------------------------------------------------------------
+
+package aulajava2;
+import java.util.Scanner;
+public class nome {
+
+			public static void main(String[] args) {
+				
+				Scanner input = new Scanner (System.in);
+				String nome1;
+				String nome2;
+				
+				
+					System.out.println("Entre como primeiro nome: ");
+					nome1=input.next();
+					System.out.println("Entre com o segundo nome: ");
+					nome2=input.next();
+					nome1=nome1.toUpperCase();
+					nome2=nome2.toUpperCase();
+					if(nome1.equals(nome2))
+				System.out.println("Nomes iguais!!!");
+					else{
+						System.out.println("Nomes diferentes!!");
+					}
+	}
+	}
 
 
