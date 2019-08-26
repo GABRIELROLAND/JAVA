@@ -1,0 +1,81 @@
+package org.lasalle.poo.exemplo1;
+
+public class Caneta {
+	
+	public String modelo;
+	public String cor;
+	private float ponta;
+	protected int carga;
+	private boolean tampada;
+	
+	public void setModelo(String modelo){
+		
+		
+		this.modelo=modelo; 
+	}
+	public String getModelo(){
+		return this.modelo;
+	}
+	
+	public String getCor() {
+		return cor;
+	}
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+	public float getPonta() {
+		return ponta;
+	}
+	public void setPonta(float ponta) {
+		this.ponta = ponta;
+	}
+	public int getCarga() {
+		return carga;
+	}
+	public void setCarga(int carga) {
+		this.carga = carga;
+	}
+	public boolean isTampada() {
+		return tampada;
+	}
+	public void setTampada(boolean tampada) {
+		this.tampada = tampada;
+	}
+	public void escrever (){
+		if(tampada)
+			
+		System.out.println("Erro!Não consigo escrever!");
+	
+	else
+		System.out.println("Escrevendo...");}
+	
+		public void tampar(){
+			this.tampada=true;
+			
+		}
+		public void destampar(){
+			
+			this.tampada=false;
+		}
+	}
+	------------------------------------------------------
+  
+  package org.lasalle.poo.exemplo1;
+
+public class CanetaTester {
+	public static void main(String[]args){
+	Caneta caneta=new Caneta();
+	caneta.setModelo("Compacto");
+	caneta.setCor("Azul");
+	//caneta.cor="Verde";
+	//caneta.ponta=0.5f;
+	caneta.carga=50;
+	//caneta.tampada=true;
+	caneta.destampar();
+	caneta.escrever();
+	caneta.tampar();
+	System.out.println("Modelo="+ caneta.getModelo());
+	System.out.println("Cor="+ caneta.getCor());
+			
+}
+} 
