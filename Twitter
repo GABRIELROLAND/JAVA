@@ -1,0 +1,192 @@
+public class TestTweet {
+
+	public static void main(String[] args) {
+		Usuario usuario = new Usuario();
+		usuario.setNome("Gabriel");
+		usuario.setUsuario("GAB185");
+		
+		usuario.Login();
+		
+		Tweet t1 = new Tweet();
+		t1.Tweetar(usuario);
+		
+		System.out.println("\r\n");
+		usuario.imprimirTweet();
+		usuario.Logout();
+		
+	}
+
+}
+--------------------------------------------------------------------------------------------
+
+import java.util.Date;
+import java.util.Scanner;
+
+public class Tweet {
+	private String texto;
+	private Date horario;
+	
+	
+	public String getTexto() {
+		return texto;
+	}
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+	public Date getHorario() {
+		return horario;
+	}
+	public void setHorario(Date horario) {
+		this.horario = horario;
+	}
+
+	public void  Tweetar(Usuario a1) {
+		String teste = "y";
+		while(teste.equals("y"))
+		{
+			if(a1.isLogado())
+			{
+				Date date = new Date(); 
+				this.horario = date;
+				
+				Scanner dados = new Scanner(System.in);
+				System.out.print("Entre com o seu twiter: ");
+				String tweet = dados.nextLine();
+				
+				if(tweet.length() >= 140)
+				{
+					System.out.println("~ Ultrapassou o limite de caracteres! ~");
+				}
+				else
+				{
+					Tweet t2 = new Tweet();
+					t2.setTexto(tweet);
+					//this.texto = tweet;
+					a1.adicionarTweet(t2);
+					System.out.println("~ Tweet postado! ~");
+					System.out.print("- Deseja postar mais Y/N  -");
+					teste = dados.next();
+					
+				}
+			}
+			else
+			{
+				System.out.println("Necessita logar para processeguir");
+				
+			}
+		
+		}
+		
+	}
+	
+	
+}
+---------------------------------------------------------------------------------------------------------
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Usuario {
+	private String usuario;
+	private String nome;
+	private ArrayList<Tweet> tweets;
+	private boolean logado;
+	
+	
+	public boolean isLogado() {
+		return logado;
+	}
+
+	public void setLogado(boolean logado) {
+		this.logado = logado;
+	}
+
+	public Usuario(){
+		tweets = new ArrayList<Tweet>();
+	}
+		
+	public void Login() {
+		Scanner dados = new Scanner(System.in);
+		System.out.print("Digite o seu Usuario : ");
+		String login = dados.next();
+		System.out.print("Digite a sua Senha: ");
+		String senha = dados.next();
+		if(senha.equals("poo"))
+		{
+			logado = true;
+			System.out.println("~ Login efetuado");
+			System.out.println("\r\n");
+		}
+		else
+		{
+			System.out.println("~ Senha Errada! ~");
+			System.out.print("- Gostaria de tentar Novamente? - (y/n): ");
+			String confirmacao = dados.next();
+			if(confirmacao.equals("y"))
+			{
+				System.out.println("\r\n");
+				Login();
+			}
+		}
+	}
+	
+	public void Logout()
+	{
+		if(logado)
+		{
+			logado=false;
+			System.out.println("~ Voce Deslogou! ~");
+		}
+		else {
+			System.out.println("Voce nao esta logado!!!");
+		}
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public ArrayList<Tweet> getTweets() {
+		return tweets;
+	}
+	public void setTweets(ArrayList<Tweet> tweets) {
+		this.tweets = tweets;
+	}
+	public void adicionarTweet(Tweet novoTweet){
+		if (logado)
+		{
+			tweets.add(novoTweet);
+			System.out.println("\r\n");
+		}
+		else
+		{
+			System.out.println("~ Para postar e necessario logar ");
+			System.out.println("\r\n");
+		}
+	}
+	public void imprimirTweet(){
+		for(int i = 0 ; i < tweets.size() ; i++){
+			Tweet t1;
+			t1 = tweets.get(i);
+			System.out.println("~ Tweet #"+i+" "+ t1.getHorario()+" ~");
+			System.out.println(t1.getTexto());
+			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			System.out.println("\r\n");
+		}
+		
+	}
+
+	
+
+}
