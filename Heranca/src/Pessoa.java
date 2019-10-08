@@ -1,9 +1,9 @@
 
 public class Pessoa {
 
-		privare String nome;
-		privare int idade;
-		privare String sexo;
+		private String nome;
+		private int idade;
+		private String sexo;
 		
 		public void fazerAniv()
 		{
